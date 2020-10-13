@@ -514,4 +514,39 @@ namespace CsvHelper.Configuration
 			return map;
 		}
 	}
+
+	public static class CsvConfigurationExtensions
+	{
+		/// <summary>
+		/// Use this function to create a modified CultureInfo using ISO8601-like date format yyyy-MM-dd HH:mm:ss
+		/// </summary>
+		/// <param name="ci"></param>
+		/// <returns></returns>
+		public static CultureInfo UseIsoLikeDateFormat(this CultureInfo ci)
+		{
+			var c = (CultureInfo)CultureInfo.InvariantCulture.Clone();
+			c.DateTimeFormat.ShortDatePattern = "yyyy-MM-dd";
+			c.DateTimeFormat.ShortTimePattern = "HH:mm:ss";
+			c.DateTimeFormat.LongDatePattern = "yyyy-MM-dd";
+			c.DateTimeFormat.LongTimePattern = "HH:mm:ss";
+			c.DateTimeFormat.FullDateTimePattern = "yyyy-MM-dd HH:mm:ss";
+			return c;
+		}
+
+		/// <summary>
+		/// Use this function to create a modified CultureInfo using ISO8601 date format yyyy-MM-dd HH:mm:ss
+		/// </summary>
+		/// <param name="ci"></param>
+		/// <returns></returns>
+		public static CultureInfo UseIso8601DateFormat(this CultureInfo ci)
+		{
+			var c = (CultureInfo)CultureInfo.InvariantCulture.Clone();
+			c.DateTimeFormat.ShortDatePattern = "yyyy-MM-dd";
+			c.DateTimeFormat.ShortTimePattern = "HH:mm:ss";
+			c.DateTimeFormat.LongDatePattern = "yyyy-MM-dd";
+			c.DateTimeFormat.LongTimePattern = "HH:mm:ss";
+			c.DateTimeFormat.FullDateTimePattern = "yyyy-MM-ddTHH:mm:ss";
+			return c;
+		}
+	}
 }
