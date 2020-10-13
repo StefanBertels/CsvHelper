@@ -20,13 +20,13 @@ namespace CsvHelper.Tests.Culture
 		[TestMethod]
 		public void IsoLikeDateFormatCultureTest()
 		{
-			var c = CultureInfo.InvariantCulture.UseIsoLikeDateFormat();
+			var c = CultureInfo.GetCultureInfo(1031).UseIsoLikeDateFormat();
 
-			Assert.AreEqual(new DateTime(2020, 10, 13), DateTime.Parse("2020-10-13 00:00:00", c));
 			Assert.AreEqual(new DateTimeOffset(2020, 10, 13, 12, 0, 0, TimeSpan.Zero), DateTimeOffset.Parse("2020-10-13 12:00:00 +00:00", c));
+			Assert.AreEqual(new DateTime(2020, 10, 13), DateTime.Parse("2020-10-13 00:00:00", c));
 
+			Assert.AreEqual("2020-10-13 12:00:00 +00:00", new DateTimeOffset(2020, 10, 13, 12, 0, 0, TimeSpan.Zero).ToString(c));
 			Assert.AreEqual("2020-10-13 00:00:00", new DateTime(2020, 10, 13).ToString(c));
-			Assert.AreEqual("2020-10-13 12:00:00 +00:00", new DateTimeOffset(2020, 10, 13, 12, 0,0, TimeSpan.Zero).ToString(c));
 		}
 
 		[TestMethod]
@@ -34,11 +34,11 @@ namespace CsvHelper.Tests.Culture
 		{
 			var c = CultureInfo.InvariantCulture.UseIso8601DateFormat();
 
-			Assert.AreEqual(new DateTime(2020, 10, 13), DateTime.Parse("2020-10-13T00:00:00", c));
 			Assert.AreEqual(new DateTimeOffset(2020, 10, 13, 12, 0, 0, TimeSpan.Zero), DateTimeOffset.Parse("2020-10-13T12:00:00 +00:00", c));
+			Assert.AreEqual(new DateTime(2020, 10, 13), DateTime.Parse("2020-10-13T00:00:00", c));
 
+			Assert.AreEqual("2020-10-13 12:00:00 +00:00", new DateTimeOffset(2020, 10, 13, 12, 0, 0, TimeSpan.Zero).ToString(c));
 			Assert.AreEqual("2020-10-13T00:00:00", new DateTime(2020, 10, 13).ToString(c));
-			Assert.AreEqual("2020-10-13T12:00:00 +00:00", new DateTimeOffset(2020, 10, 13, 12, 0, 0, TimeSpan.Zero).ToString(c));
 		}
 
 	}
